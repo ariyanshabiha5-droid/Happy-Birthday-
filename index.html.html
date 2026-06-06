@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Nusrat ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+
+:root{
+--pink:#ff2e88;
+--gold:#ffd700;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Hind Siliguri',sans-serif;
+}
+
+body{
+background:black;
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* STARS */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:0;
+}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:blink 2s infinite;
+}
+
+@keyframes blink{
+0%,100%{opacity:.2}
+50%{opacity:1}
+}
+
+/* HEARTS */
+
+#hearts{
+position:fixed;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:1;
+}
+
+/* BALLOONS */
+
+#balloons{
+position:fixed;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+z-index:1;
+}
+
+.balloon{
+position:absolute;
+bottom:-120px;
+width:60px;
+height:80px;
+border-radius:50%;
+opacity:.8;
+animation:floatBalloon linear infinite;
+}
+
+.balloon::after{
+content:'';
+position:absolute;
+width:2px;
+height:70px;
+background:white;
+left:50%;
+top:80px;
+}
+
+@keyframes floatBalloon{
+0%{
+transform:translateY(0) rotate(0deg);
+}
+100%{
+transform:translateY(-130vh) rotate(10deg);
+}
+}
+
+/* MAIN CARD */
+
+.phone{
+width:360px;
+height:740px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+border:2px solid rgba(255,255,255,.1);
+border-radius:40px;
+overflow:hidden;
+position:relative;
+z-index:5;
+box-shadow:0 0 40px rgba(255,0,128,.4);
+animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-10px);
+}
+}
+
+.screen{
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:25px;
+text-align:center;
+}
+
+/* TITLE */
+
+.title{
+font-family:'Dancing Script',cursive;
+font-size:48px;
+color:var(--gold);
+text-shadow:0 0 20px gold;
+margin-bottom:10px;
+}
+
+.name{
+font-size:30px;
+color:white;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+/* GIFT */
+
+.gift{
+width:120px;
+height:120px;
+border-radius:50%;
+background:var(--pink);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:55px;
+cursor:pointer;
+box-shadow:0 0 30px var(--pink);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%,100%{
+transform:scale(1);
+}
+50%{
+transform:scale(1.1);
+}
+}
+
+/* MESSAGE */
+
+.message-box{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+padding:18px;
+border-radius:20px;
+margin-top:20px;
+color:white;
+line-height:1.9;
+font-size:16px;
+min-height:180px;
+}
+
+/* BUTTON */
+
+.btn{
+margin-top:18px;
+padding:12px 24px;
+border-radius:30px;
+border:1px solid gold;
+background:none;
+color:gold;
+font-size:15px;
+cursor:pointer;
+}
+
+/* PHOTO SLIDER */
+
+.slider{
+margin-top:20px;
+width:180px;
+height:180px;
+border-radius:20px;
+overflow:hidden;
+border:3px solid rgba(255,255,255,.2);
+box-shadow:0 0 25px rgba(255,255,255,.2);
+}
+
+.slider img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* FINAL TEXT */
+
+.final{
+position:absolute;
+inset:0;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:30px;
+z-index:20;
+}
+
+.final h1{
+font-size:35px;
+color:white;
+line-height:1.8;
+text-shadow:0 0 20px #ff2e88;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{
+opacity:.6;
+}
+to{
+opacity:1;
+}
+}
+
+.hidden{
+display:none;
+}
+
+.show{
+display:flex;
+animation:fade 1.5s;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div id="hearts"></div>
+
+<div id="balloons"></div>
+
+<div class="phone">
+
+<div id="first" class="screen">
+
+<h1 class="title">Happy Birthday</h1>
+
+<h2 class="name">  সাবিহা ❤️</h2>
+
+<p style="color:#ccc;margin-bottom:25px">
+তোমার জন্য একটি স্পেশাল সারপ্রাইজ আছে ✨
+</p>
+
+<div class="gift" onclick="startExperience()">
+🎁
+</div>
+
+<p style="color:#aaa;margin-top:20px">
+গিফট ওপেন করতে ক্লিক করো 💖
+</p>
+
+</div>
+
+<div id="second" class="screen hidden">
+
+<h1 class="title" style="font-size:38px">
+Happy Birthday Sabiha🎂
+</h1>
+
+<div class="slider">
+<img id="slideImage"
+src="https://i.ibb.co/2kRZ5qX/girl.jpg">
+</div>
+
+<div class="message-box">
+<p id="message"></p>
+</div>
+
+<button class="btn" onclick="boom()">
+আরো ভালোবাসা বর্ষণ করো ❤️
+</button>
+
+</div>
+
+<div class="final" id="finalScreen">
+<h1>
+<br><br>
+আল্লাহ তোমাকে সবসময় সুখে রাখুক ✨
+</h1>
+</div>
+
+</div>
+
+<audio id="music" loop>
+<source src="https://files.catbox.moe/8q6n0x.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* STARS */
+
+for(let i=0;i<120;i++){
+
+const star=document.createElement('div');
+
+star.classList.add('star');
+
+star.style.left=Math.random()*100+'vw';
+star.style.top=Math.random()*100+'vh';
+
+star.style.animationDuration=
+(Math.random()*3+1)+'s';
+
+document.getElementById('stars').appendChild(star);
+
+}
+
+/* START */
+
+function startExperience(){
+
+document.getElementById('music').play();
+
+document.getElementById('first').classList.add('hidden');
+
+const second=document.getElementById('second');
+
+second.classList.remove('hidden');
+
+second.classList.add('show');
+
+typeMessage();
+
+boom();
+
+setInterval(createHeart,400);
+
+setInterval(createBalloon,700);
+
+startSlider();
+
+setTimeout(()=>{
+document.getElementById('finalScreen').style.display='flex';
+boom();
+},35000);
+
+}
+
+/* MESSAGE */
+
+function typeMessage(){
+
+const text=
+"🌸 আজকের এই বিশেষ দিনে তোমার জন্য রইলো অসংখ্য দোয়া ও অফুরন্ত ভালোবাসা। 🤲✨ আল্লাহ তোমার জীবনকে সুখ, শান্তি, সফলতা আর সুন্দর মুহূর্তে ভরিয়ে দিক। 💖 তোমার প্রতিটি স্বপ্ন পূরণ হোক, প্রতিটি দিন আনন্দে কাটুক। 🌺 আল্লাহ তোমাকে দীর্ঘ নেক হায়াত দান করুন এবং সবসময় হাসিখুশি রাখুন। 🎂🎉 শুভ জন্মদিন সাবিহা❤️";
+
+let i=0;
+
+const msg=document.getElementById('message');
+
+function typing(){
+
+if(i<text.length){
+
+msg.innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,50);
+
+}
+
+}
+
+typing();
+
+}
+
+/* HEARTS */
+
+function createHeart(){
+
+const heart=document.createElement('div');
+
+heart.innerHTML='❤️';
+
+heart.style.position='absolute';
+
+heart.style.left=Math.random()*100+'vw';
+
+heart.style.top='100vh';
+
+heart.style.fontSize=
+(Math.random()*20+15)+'px';
+
+heart.style.transition='5s linear';
+
+document.getElementById('hearts').appendChild(heart);
+
+setTimeout(()=>{
+heart.style.transform=
+'translateY(-120vh) rotate(360deg)';
+},100);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+}
+
+/* BALLOONS */
+
+function createBalloon(){
+
+const balloon=document.createElement('div');
+
+balloon.classList.add('balloon');
+
+const colors=[
+'#ff4d6d',
+'#ff85a1',
+'#ffd60a',
+'#4cc9f0',
+'#b5179e',
+'#ff9f1c'
+];
+
+balloon.style.background=
+colors[Math.floor(Math.random()*colors.length)];
+
+balloon.style.left=
+Math.random()*100+'vw';
+
+balloon.style.animationDuration=
+(Math.random()*5+6)+'s';
+
+document.getElementById('balloons')
+.appendChild(balloon);
+
+setTimeout(()=>{
+balloon.remove();
+},12000);
+
+}
+
+/* CONFETTI */
+
+function boom(){
+
+var count=250;
+
+var defaults={
+origin:{y:0.7}
+};
+
+function fire(ratio,opts){
+
+confetti(Object.assign({},defaults,opts,{
+particleCount:
+Math.floor(count*ratio)
+}));
+
+}
+
+fire(0.25,{
+spread:26,
+startVelocity:55,
+colors:['#ff2e88','#ffd700']
+});
+
+fire(0.2,{
+spread:60,
+colors:['#ffffff']
+});
+
+fire(0.35,{
+spread:100,
+decay:0.91,
+scalar:0.8
+});
+
+}
+
+/* PHOTO SLIDER */
+
+const images=[
+'https://i.ibb.co/2kRZ5qX/girl.jpg',
+'https://i.ibb.co/tmFQY3G/girl2.jpg',
+'https://i.ibb.co/j4r8k0Q/girl3.jpg'
+];
+
+let current=0;
+
+function startSlider(){
+
+setInterval(()=>{
+
+current++;
+
+if(current>=images.length){
+current=0;
+}
+
+document.getElementById('slideImage').src=
+images[current];
+
+},3000);
+
+}
+
+</script>
+
+</body>
+</html>
